@@ -79,7 +79,10 @@ router.post('/member/verify', async (req, res) => {
   }
 });
 
-// Mount router at both possible base paths for serverless-http compatibility
+// Mount router at all possible base paths for serverless-http compatibility
+// Netlify passes the original request path (/api/...) to the function event,
+// not the rewritten path (/.netlify/functions/api/...).
+app.use('/api', router);
 app.use('/.netlify/functions/api', router);
 app.use('/', router);
 
