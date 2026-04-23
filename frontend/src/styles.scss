@@ -1,0 +1,137 @@
+@use "primeicons/primeicons.css";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f4f6f9;
+}
+
+// ── PrimeNG Dialog global styles (renders at body level via appendTo="body") ──
+.p-dialog {
+  font-family: 'Poppins', sans-serif;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff !important;
+  color: #333 !important;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.p-dialog .p-dialog-header {
+  background: #fff !important;
+  color: #333 !important;
+  border-bottom: 0;
+  padding: 1rem;
+  padding-bottom: 0;
+}
+
+.p-dialog .p-dialog-content {
+  background: #fff !important;
+  color: #333 !important;
+  padding: 1rem;
+}
+
+.p-dialog .p-dialog-footer {
+  background: #fff !important;
+  border-top: 1px solid #e0e0e0;
+  padding: 1rem;
+}
+
+.p-dialog .p-dialog-header-actions .p-button {
+  color: #666 !important;
+
+  &:hover {
+    background: #f0f0f0 !important;
+    color: #333 !important;
+  }
+}
+
+.p-dialog-mask {
+  background: rgba(0, 0, 0, 0.4) !important;
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+
+  &.success {
+    color: #1b5e20;
+  }
+
+  &.error {
+    color: #c62828;
+  }
+
+  i {
+    font-size: 1.4rem;
+  }
+}
+
+.dialog-body {
+  font-family: 'Poppins', sans-serif;
+  padding: 0.5rem 0;
+
+  p {
+    margin: 0 0 0.5rem;
+    color: #333;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+
+.dialog-success {
+  background: #e8f5e9;
+  border-left: 4px solid #1b5e20;
+  border-radius: 4px;
+  padding: 1rem;
+
+  p {
+    margin: 0;
+    color: #1b5e20;
+  }
+}
+
+.dialog-error {
+  background: #ffebee;
+  border-left: 4px solid #c62828;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+.dialog-error-title {
+  font-weight: 500;
+  color: #c62828 !important;
+}
+
+.error-list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+
+  li {
+    color: #555;
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+}
+
+.dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.dialog-ok-btn.p-button {
+  background: #1b5e20;
+  border-color: #1b5e20;
+  font-family: 'Poppins', sans-serif;
+
+  &:hover {
+    background: #2e7d32;
+    border-color: #2e7d32;
+  }
+}

@@ -1,0 +1,210 @@
+﻿<div class="contact-container">
+  <div class="contact-card">
+    <div class="card-header">Add Contact</div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="card-body">
+        <div class="form-grid">
+          <!-- Row 1 -->
+          <div class="field">
+            <label for="firstname">First Name <span class="required">*</span></label>
+            <input pInputText id="firstname" formControlName="firstname" placeholder="First Name" class="w-full" />
+          </div>
+          <div class="field">
+            <label for="surname">Last Name <span class="required">*</span></label>
+            <input pInputText id="surname" formControlName="surname" placeholder="Last Name" class="w-full" />
+          </div>
+
+          <!-- Row 2 -->
+          <div class="field">
+            <label for="othernames">Other Names</label>
+            <input pInputText id="othernames" formControlName="othernames" placeholder="Other Names" class="w-full" />
+          </div>
+          <div class="field">
+            <label for="dob">Date of Birth <span class="required">*</span></label>
+            <p-datepicker
+              id="dob"
+              formControlName="dob"
+              dateFormat="yy-mm-dd"
+              [showIcon]="true"
+              [maxDate]="maxDob"
+              placeholder="Select date"
+              class="w-full"
+            />
+          </div>
+
+          <!-- Row 3 -->
+          <div class="field">
+            <label for="gender">Gender <span class="required">*</span></label>
+            <p-select
+              id="gender"
+              formControlName="gender"
+              [options]="genderOptions"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Select gender"
+              class="w-full"
+            />
+          </div>
+          <div class="field">
+            <label for="nid">NID <span class="required">*</span></label>
+            <input pInputText id="nid" formControlName="nid" placeholder="NID" class="w-full" maxlength="8" />
+          </div>
+
+          <!-- Row 3 -->
+          <div class="field">
+            <label for="designation">Designation</label>
+            <p-select
+              id="designation"
+              formControlName="designation"
+              [options]="designationOptions"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Select designation"
+              class="w-full"
+            />
+          </div>
+          <div class="field">
+            <label for="termOfUse">Term of Use</label>
+            <p-select
+              id="termOfUse"
+              formControlName="termOfUse"
+              [options]="termOfUseOptions"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Select term of use"
+              class="w-full"
+            />
+          </div>
+
+          <!-- Row 4 -->
+          <div class="field">
+            <label for="email">Email</label>
+            <input pInputText id="email" formControlName="email" placeholder="Email" class="w-full" />
+          </div>
+          <div class="field">
+            <label for="phone">Phone Number</label>
+            <input pInputText id="phone" formControlName="phone" maxlength="8" placeholder="Phone number" class="w-full" />
+          </div>
+
+          <!-- Row 5 - full width -->
+          <div class="field-full">
+            <label for="address">Address</label>
+            <input pInputText id="address" formControlName="address" placeholder="Address" class="w-full" />
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <p-button
+          label="Cancel"
+          severity="secondary"
+          [text]="true"
+          (onClick)="cancel()"
+          styleClass="cancel-btn"
+        />
+        <p-button
+          type="submit"
+          label="Add"
+          [loading]="loading"
+          [disabled]="form.invalid"
+          styleClass="add-btn"
+        />
+      </div>
+    </form>
+
+  </div>
+
+  <!-- QA Test Data Reference -->
+  <div class="test-data-card">
+    <div class="test-data-header">
+      <i class="pi pi-info-circle"></i>
+      QA Test Data — Available NRB Mock Persons
+    </div>
+    <p-table [value]="testData" [tableStyle]="{ 'min-width': '100%' }" styleClass="p-datatable-sm p-datatable-striped">
+      <ng-template #header>
+        <tr>
+          <th>NID</th>
+          <th>First Name</th>
+          <th>Other Names</th>
+          <th>Surname</th>
+          <th>Gender</th>
+          <th>DOB</th>
+          <th>Status</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-row>
+        <tr>
+          <td><code>{{ row.idno }}</code></td>
+          <td>{{ row.firstname }}</td>
+          <td>{{ row.othernames || '-' }}</td>
+          <td>{{ row.surname }}</td>
+          <td>{{ row.gender }}</td>
+          <td>{{ row.dob }}</td>
+          <td>
+            <span class="status-badge"
+              [class.status-valid]="row.status === 'VALID' || row.status === 'VALID (Minor)'"
+              [class.status-expired]="row.status === 'EXPIRED'"
+              [class.status-deceased]="row.status === 'PERSON DECEASED'"
+              [class.status-invalid]="row.status === 'INVALID'"
+              [class.status-renewal]="row.status === 'RENEWAL PROCESSED'"
+              [class.status-seenrb]="row.status === 'SEE NRB'"
+            >{{ row.status }}</span>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+<p-dialog
+  [(visible)]="showDialog"
+  [modal]="true"
+  [closable]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [style]="{ width: '450px' }"
+  appendTo="body"
+>
+  <ng-template #header>
+    <div class="dialog-header" [class.success]="result?.success" [class.error]="result && !result.success">
+      <i class="pi" [class.pi-check-circle]="result?.success" [class.pi-times-circle]="result && !result.success"></i>
+      <span>{{ result?.success ? 'Verification Successful' : 'Verification Failed' }}</span>
+    </div>
+  </ng-template>
+
+  <div class="dialog-body">
+    @if (result?.success) {
+      <div class="dialog-success">
+        <p>Member identity has been verified successfully. You may proceed to save this contact.</p>
+      </div>
+    } @else if (result && !result.success) {
+      <div class="dialog-error">
+        <p class="dialog-error-title">The following issues were found:</p>
+        <ul class="error-list">
+          @for (err of result.errors; track err) {
+            <li>{{ err }}</li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
+
+  <ng-template #footer>
+    <div class="dialog-footer">
+      @if (result && !result.success) {
+        <p-button
+          label="Close"
+          severity="secondary"
+          [outlined]="true"
+          (onClick)="closeDialog()"
+        />
+      } @else {
+        <p-button
+          label="OK"
+          styleClass="dialog-ok-btn"
+          (onClick)="closeDialog()"
+        />
+      }
+    </div>
+  </ng-template>
+</p-dialog>

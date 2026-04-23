@@ -1,0 +1,19 @@
+{
+	"geolocation": {
+		"data": {
+			"city": "Ebene CyberCity",
+			"country": {
+				"code": "MU",
+				"name": "Mauritius"
+			},
+			"subdivision": {
+				"code": "PW",
+				"name": "Plaines Wilhems District"
+			},
+			"timezone": "Indian/Mauritius",
+			"latitude": -20.2494,
+			"longitude": 57.4879
+		},
+		"timestamp": 1776937917726
+	}
+}

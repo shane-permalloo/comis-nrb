@@ -1,0 +1,10 @@
+{
+  "name": "nrb-mock-project",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "serverless-http": "^3.2.0",
+    "axios": "^1.8.0",
+    "express": "^4.21.0"
+  }
+}

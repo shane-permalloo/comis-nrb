@@ -1,0 +1,27 @@
+[build]
+  command = "cd frontend && npm install && npx ng build --configuration production"
+  publish = "frontend/dist/frontend/browser"
+  functions = "netlify/functions"
+
+[dev]
+  command = "npm --prefix frontend run start -- --port 4200"
+  targetPort = 4200
+  port = 8888
+  autoLaunch = false
+
+[functions]
+  node_bundler = "esbuild"
+  included_files = ["backend/**"]
+
+# Redirect /api/* to the Netlify Function
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+  force = true
+
+# SPA fallback for Angular routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
