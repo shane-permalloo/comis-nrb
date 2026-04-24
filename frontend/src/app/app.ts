@@ -38,7 +38,7 @@ export class App {
     firstname: ['', Validators.required],
     surname: ['', Validators.required],
     othernames: [''],
-    dob: ['', Validators.required],
+    dob: ['2000-01-01', Validators.required],
     gender: ['', Validators.required],
     nid: ['', Validators.required],
     designation: [''],
