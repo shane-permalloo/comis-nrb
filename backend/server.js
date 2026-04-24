@@ -24,8 +24,11 @@ app.get('/mock/api/person', (req, res) => {
 // Member verification endpoint
 app.post('/api/member/verify', async (req, res) => {
   try {
-    const { nid, firstname, surname, othernames, gender, dob } = req.body;
-    const r = await axios.get(process.env.MOCK_NRB_URL, {
+    const { nid, firstname, surname, othernames, gender, dob, useMock } = req.body;
+
+    // When useMock is false and NRB_API_URL is set, call the real NRB API; otherwise use the mock
+    const nrbUrl = (!useMock && process.env.NRB_API_URL) ? process.env.NRB_API_URL : process.env.MOCK_NRB_URL;
+    const r = await axios.get(nrbUrl, {
       params: { IDNumber: nid },
       headers: { ClientId: process.env.CLIENT_ID, ClientKey: process.env.CLIENT_KEY }
     });

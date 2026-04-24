@@ -1,6 +1,12 @@
 ﻿<div class="contact-container">
   <div class="contact-card">
-    <div class="card-header">Add Contact</div>
+    <div class="card-header">
+      <span>Add Contact</span>
+      <div class="nrb-toggle">
+        <span class="toggle-label">{{ useLiveNrb ? 'Live NRB' : 'Mock Data' }}</span>
+        <p-toggleswitch [(ngModel)]="useLiveNrb" />
+      </div>
+    </div>
 
     <form [formGroup]="form" (ngSubmit)="submit()">
       <div class="card-body">

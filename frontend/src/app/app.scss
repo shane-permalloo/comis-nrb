@@ -1,7 +1,8 @@
 .contact-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  column-gap: 20px;
   min-height: 100vh;
   padding: 2rem;
   background: #f4f6f9;
@@ -23,6 +24,21 @@
   font-size: 1rem;
   font-weight: 600;
   font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nrb-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.toggle-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  opacity: 0.9;
 }
 
 .card-body {
@@ -153,7 +169,6 @@ label {
 .test-data-card {
   width: 100%;
   max-width: 800px;
-  margin-top: 1.5rem;
   background: #fff;
   border-radius: 6px;
   overflow: hidden;
@@ -175,7 +190,7 @@ label {
 :host ::ng-deep {
   .p-datatable {
     font-family: 'Poppins', sans-serif;
-    font-size: 0.825rem;
+    font-size: 0.75rem;
   }
 
   .p-datatable .p-datatable-thead > tr > th {

@@ -10,6 +10,8 @@ app.use(express.json());
 const CLIENT_ID = process.env.CLIENT_ID || 'apiTest';
 const CLIENT_KEY = process.env.CLIENT_KEY || 'FBE119F2';
 const MIN_AGE = Number(process.env.MIN_AGE || 18);
+// Set NRB_API_URL to the real NRB endpoint to switch away from mock data
+const NRB_API_URL = process.env.NRB_API_URL || '';
 
 const router = express.Router();
 
@@ -28,14 +30,23 @@ router.get('/mock/api/person', (req, res) => {
 // Member verification endpoint
 router.post('/member/verify', async (req, res) => {
   try {
-    const { nid, firstname, surname, othernames, gender, dob } = req.body;
+    const { nid, firstname, surname, othernames, gender, dob, useMock } = req.body;
 
-    // Call the mock NRB endpoint via the public URL (goes through redirect)
-    const baseUrl = process.env.URL || 'http://localhost:8888';
-    const r = await axios.get(`${baseUrl}/api/mock/api/person`, {
-      params: { IDNumber: nid },
-      headers: { ClientId: CLIENT_ID, ClientKey: CLIENT_KEY }
-    });
+    let r;
+    if (!useMock && NRB_API_URL) {
+      // Call the real NRB API
+      r = await axios.get(NRB_API_URL, {
+        params: { IDNumber: nid },
+        headers: { ClientId: CLIENT_ID, ClientKey: CLIENT_KEY }
+      });
+    } else {
+      // Fall back to the local mock endpoint
+      const baseUrl = process.env.URL || 'http://localhost:8888';
+      r = await axios.get(`${baseUrl}/api/mock/api/person`, {
+        params: { IDNumber: nid },
+        headers: { ClientId: CLIENT_ID, ClientKey: CLIENT_KEY }
+      });
+    }
     const p = r.data;
     const errors = [];
 

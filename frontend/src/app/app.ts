@@ -7,6 +7,8 @@ import { DatePicker } from 'primeng/datepicker';
 import { Button } from 'primeng/button';
 import { Dialog } from 'primeng/dialog';
 import { TableModule } from 'primeng/table';
+import { ToggleSwitch } from 'primeng/toggleswitch';
+import { FormsModule } from '@angular/forms';
 import { VerifyService } from './verify.service';
 
 @Component({
@@ -19,7 +21,9 @@ import { VerifyService } from './verify.service';
     DatePicker,
     Button,
     Dialog,
-    TableModule
+    TableModule,
+    ToggleSwitch,
+    FormsModule
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
@@ -69,6 +73,7 @@ export class App {
   result: any = null;
   loading = false;
   showDialog = false;
+  useLiveNrb = false;
   maxDob: Date;
 
   testData = [
@@ -94,7 +99,8 @@ export class App {
     const val = this.form.value;
     const payload = {
       ...val,
-      dob: val.dob ? this.formatDate(val.dob as any) : ''
+      dob: val.dob ? this.formatDate(val.dob as any) : '',
+      useMock: !this.useLiveNrb
     };
     this.api.verifyMember(payload).subscribe({
       next: (r) => {
