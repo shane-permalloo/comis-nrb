@@ -57,7 +57,23 @@
             <input pInputText id="nid" formControlName="nid" placeholder="NID" class="w-full" maxlength="8" />
           </div>
 
-          <!-- Row 3 -->
+          <!-- Row 4 -->
+          <div class="field">
+            <label for="email">Email</label>
+            <input pInputText id="email" formControlName="email" placeholder="Email" class="w-full" />
+          </div>
+          <div class="field">
+            <label for="phone">Phone Number</label>
+            <input pInputText id="phone" formControlName="phone" maxlength="8" placeholder="Phone number" class="w-full" />
+          </div>
+
+          <!-- Row 5 - full width -->
+          <div class="field-full">
+            <label for="address">Address</label>
+            <input pInputText id="address" formControlName="address" placeholder="Address" class="w-full" />
+          </div>
+          <hr style="margin: 0; height: 1px; line-height: 1px; border: 0; border-bottom: 1px solid #f0f0f0;" />
+           <!-- Row 3 -->
           <div class="field">
             <label for="designation">Designation</label>
             <p-select
@@ -81,22 +97,6 @@
               placeholder="Select term of use"
               class="w-full"
             />
-          </div>
-
-          <!-- Row 4 -->
-          <div class="field">
-            <label for="email">Email</label>
-            <input pInputText id="email" formControlName="email" placeholder="Email" class="w-full" />
-          </div>
-          <div class="field">
-            <label for="phone">Phone Number</label>
-            <input pInputText id="phone" formControlName="phone" maxlength="8" placeholder="Phone number" class="w-full" />
-          </div>
-
-          <!-- Row 5 - full width -->
-          <div class="field-full">
-            <label for="address">Address</label>
-            <input pInputText id="address" formControlName="address" placeholder="Address" class="w-full" />
           </div>
         </div>
       </div>
