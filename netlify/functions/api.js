@@ -1,10 +1,12 @@
 const serverless = require('serverless-http');
 const express = require('express');
+const cors = require('cors');
 const axios = require('axios');
 const data = require('../../backend/mockData');
 const { norm, ageFrom, toNrbDate } = require('../../backend/utils');
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 const CLIENT_ID = process.env.CLIENT_ID || 'apiTest';

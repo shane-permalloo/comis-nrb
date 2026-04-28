@@ -20,6 +20,14 @@
   status = 200
   force = true
 
+# Allow cross-origin requests to the API
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization"
+
 # SPA fallback for Angular routing
 [[redirects]]
   from = "/*"
