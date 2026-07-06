@@ -60,9 +60,9 @@ app.post('/api/member/verify', async (req, res) => {
       norm(firstname) !== norm(p.firstname) ||
       norm(surname) !== norm(p.surname) ||
       norm(gender) !== norm(p.gender) ||
-      toNrbDate(dob) !== p.dateofbirth;
+      toNrbDate(dob) !== p.dateobirth;
     if (hasMismatch) errors.push('The details provided do not match the NRB records for this NID');
-    if (ageFrom(p.dateofbirth) < Number(process.env.MIN_AGE)) errors.push('Minor not allowed');
+    if (ageFrom(p.dateobirth) < Number(process.env.MIN_AGE)) errors.push('Minor not allowed');
 
     if (errors.length) return res.json({ success: false, errors });
     res.json({ success: true, message: 'Identity verified, saving in progress' });
