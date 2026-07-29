@@ -1,7 +1,7 @@
 .contact-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   column-gap: 20px;
   min-height: 100vh;
   padding: 2rem;
@@ -16,6 +16,8 @@
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 2rem;
 }
 
 .card-header {
