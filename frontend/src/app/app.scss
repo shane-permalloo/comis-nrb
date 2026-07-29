@@ -188,6 +188,39 @@ label {
   gap: 0.5rem;
 }
 
+.test-data-filter {
+  padding: 0.6rem 1rem;
+  background: #fffde7;
+  border-bottom: 1px solid #ffe082;
+
+  .p-input-icon-left {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    i { color: #9e9e9e; flex-shrink: 0; }
+
+    input { flex: 1; font-size: 0.82rem; }
+  }
+}
+
+.idno-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+
+  &:hover .copy-icon { opacity: 1; }
+}
+
+.copy-icon {
+  font-size: 0.75rem;
+  color: #5c6bc0;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
 :host ::ng-deep {
   .p-datatable {
     font-family: 'Poppins', sans-serif;

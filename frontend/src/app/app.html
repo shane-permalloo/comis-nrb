@@ -130,7 +130,13 @@
       <i class="pi pi-info-circle"></i>
       QA Test Data — Available NRB Mock Persons
     </div>
-    <p-table [value]="testData" [tableStyle]="{ 'min-width': '100%' }" styleClass="p-datatable-sm p-datatable-striped">
+    <div class="test-data-filter">
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Search by ID, name or status…" class="w-full" />
+      </span>
+    </div>
+    <p-table [value]="testData" [globalFilterFields]="['idno','firstname','othernames','surname','gender','status']" #dt [tableStyle]="{ 'min-width': '100%' }" styleClass="p-datatable-sm p-datatable-striped" [filterDelay]="0">
       <ng-template #header>
         <tr>
           <th>Id No</th>
@@ -144,7 +150,12 @@
       </ng-template>
       <ng-template #body let-row>
         <tr>
-          <td><code>{{ row.idno }}</code></td>
+          <td>
+            <span class="idno-cell" title="Click to copy" (click)="copyId(row.idno)">
+              <code>{{ row.idno }}</code>
+              <i class="pi pi-copy copy-icon"></i>
+            </span>
+          </td>
           <td>{{ row.firstname }}</td>
           <td>{{ row.othernames || '-' }}</td>
           <td>{{ row.surname }}</td>
